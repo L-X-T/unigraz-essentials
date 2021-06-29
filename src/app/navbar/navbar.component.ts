@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'navbar-cmp',
+  selector: 'app-navbar',
   templateUrl: 'navbar.component.html'
 })
 export class NavbarComponent {
   private sidebarVisible = false;
 
-  sidebarToggle() {
+  sidebarToggle(): void {
     const body = document.getElementsByTagName('body')[0];
 
     if (this.sidebarVisible == false) {
