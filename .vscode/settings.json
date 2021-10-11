@@ -20,7 +20,7 @@
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "eslint.workingDirectories": [
-    "/Users/LXT/ng/unigraz-essentials"
+    "."
   ],
   "prettier.configPath": ".prettierrc",
   "prettier.documentSelectors": [
