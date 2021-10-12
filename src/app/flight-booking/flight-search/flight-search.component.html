@@ -14,7 +14,8 @@
                required="required"
                minlength="3"
                maxlength="15"
-               pattern="[a-zA-ZäöüÄÖÜß ]*">
+               pattern="[a-zA-ZäöüÄÖÜß ]*"
+               city>
       </div>
 
       <div *ngIf="form?.controls['from']?.invalid"> From is invalid. </div>
@@ -27,6 +28,8 @@
 
       <div *ngIf="form?.controls['from']?.hasError('pattern')"> From has invalid input. </div>
 
+      <div *ngIf="form?.controls['from']?.hasError('city')"> From needs to be a city. </div>
+
       <div class="form-group">
         <label>To:</label>
         <input [(ngModel)]="to"
@@ -35,7 +38,8 @@
                required="required"
                minlength="3"
                maxlength="15"
-               pattern="[a-zA-ZäöüÄÖÜß ]*">
+               pattern="[a-zA-ZäöüÄÖÜß ]*"
+               city>
       </div>
 
       <div *ngIf="form?.controls['to']?.invalid"> To is invalid. </div>
@@ -47,6 +51,8 @@
       <div *ngIf="form?.controls['to']?.hasError('maxlength')"> To maxlength is 15. </div>
 
       <div *ngIf="form?.controls['to']?.hasError('pattern')"> To has invalid input. </div>
+
+      <div *ngIf="form?.controls['to']?.hasError('city')"> To needs to be a city. </div>
 
       <div class="form-group">
         <button
