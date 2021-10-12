@@ -6,10 +6,11 @@ import { FlightSearchComponent } from './flight-search/flight-search.component';
 import { FlightCardComponent } from './flight-card/flight-card.component';
 import { FlightStatusToggleComponent } from './flight-status-toggle/flight-status-toggle.component';
 import { CityValidatorDirective } from './shared/validation/city-validator.directive';
+import { FlightValidationErrorsComponent } from './flight-validation-errors/flight-validation-errors.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, SharedModule],
-  declarations: [FlightSearchComponent, FlightCardComponent, FlightStatusToggleComponent, CityValidatorDirective],
+  declarations: [FlightSearchComponent, FlightCardComponent, FlightStatusToggleComponent, CityValidatorDirective, FlightValidationErrorsComponent],
   providers: [],
   exports: [FlightSearchComponent]
 })
