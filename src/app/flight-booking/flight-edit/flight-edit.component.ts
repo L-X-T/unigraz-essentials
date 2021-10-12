@@ -35,7 +35,7 @@ export class FlightEditComponent implements OnChanges, OnInit {
 
   save(): void {
     this.flightService.save(this.editForm.value).subscribe({
-      next: (flight) => {
+      next: () => {
         this.message = 'Success!';
       },
       error: (errResponse) => {
