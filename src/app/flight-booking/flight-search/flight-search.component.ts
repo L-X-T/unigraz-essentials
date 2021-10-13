@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Flight } from '../../entities/flight';
 import { FlightService } from './flight.service';
 
+import { PATTERN } from '../../shared/const';
+
 @Component({
   selector: 'flight-search',
   templateUrl: './flight-search.component.html',
@@ -13,6 +15,8 @@ export class FlightSearchComponent {
   to = 'Hamburg';
   flights: Flight[] = [];
   flightToEdit: Flight;
+
+  pattern = PATTERN;
 
   message: string;
 

@@ -1,4 +1,4 @@
-<form [formGroup]="editForm">
+<form *ngIf="editForm" [formGroup]="editForm">
   <div class="form-group">
     <label>Id:</label>
     <input formControlName="id" class="form-control">
