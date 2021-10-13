@@ -4,6 +4,7 @@ import { Flight } from '../../entities/flight';
 import { FlightService } from '../shared/services/flight.service';
 
 import { PATTERN } from '../../shared/const';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'flight-search',
@@ -25,7 +26,7 @@ export class FlightSearchComponent {
     5: true
   };
 
-  constructor(private flightService: FlightService) {}
+  constructor(private flightService: FlightService, private router: Router) {}
 
   search(): void {
     this.flightService.find(this.from, this.to).subscribe({
@@ -64,5 +65,9 @@ export class FlightSearchComponent {
       // immutable update
       // this.flights[0] = { ...firstFlight, date: newDate.toISOString() };
     }
+  }
+
+  onEdit(id: number) {
+    this.router.navigate(['/flight-edit', id, { showDetails: true }]);
   }
 }

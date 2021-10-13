@@ -44,6 +44,7 @@ export class FlightEditComponent implements OnChanges, OnInit, OnDestroy {
   ngOnInit(): void {
     if (this.debug) {
       console.warn('[FlightEditComponent] Good morning!');
+      this.route.url.subscribe((url) => console.log(url));
     }
 
     if (!this.isInitialized) {
@@ -62,8 +63,10 @@ export class FlightEditComponent implements OnChanges, OnInit, OnDestroy {
   save(): void {
     this.message = 'Is saving ...';
 
+    const flightToSave: Flight = this.editForm.value;
+
     this.flightService
-      .save(this.editForm.value)
+      .save(flightToSave)
       .pipe(delay(3000))
       .subscribe({
         next: (flight) => {
@@ -71,7 +74,9 @@ export class FlightEditComponent implements OnChanges, OnInit, OnDestroy {
           this.message = 'Success saving! Navigating ...';
           this.patchFormValue();
 
-          setTimeout(() => this.router.navigate(['/flight-search']), 3000);
+          setTimeout(() => {
+            this.router.navigate(['/flight-edit', this.flight.id, { showDetails: true }]);
+          }, 3000);
         },
         error: (errResponse) => {
           console.error('Error', errResponse);
