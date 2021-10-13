@@ -276,7 +276,7 @@ In this exercise, you will write your own validator for your reactive form, whic
     ```typescript
     import {AbstractControl, ValidationErrors} from '@angular/forms';
 
-    export function validateCity(c: AbstractControl) {
+    export function validateCity(c: AbstractControl): ValidationErrors | null {
         const validCities: string[] = ['Vienna', 'Cologne', 'Bern'];
         if (c.value && validCities.indexOf(c.value) === -1) {
             return {
