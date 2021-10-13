@@ -1,6 +1,8 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+
+import { delay } from 'rxjs/operators';
 
 import { Flight } from '../../entities/flight';
 import { FlightService } from '../shared/services/flight.service';
@@ -24,7 +26,7 @@ export class FlightEditComponent implements OnChanges, OnInit, OnDestroy {
 
   private isInitialized: Boolean;
 
-  constructor(private fb: FormBuilder, private flightService: FlightService, private route: ActivatedRoute) {}
+  constructor(private fb: FormBuilder, private flightService: FlightService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.debug) {
@@ -58,17 +60,24 @@ export class FlightEditComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   save(): void {
-    this.flightService.save(this.editForm.value).subscribe({
-      next: (flight) => {
-        this.flight = flight;
-        this.message = 'Success saving!';
-        this.patchFormValue();
-      },
-      error: (errResponse) => {
-        console.error('Error', errResponse);
-        this.message = 'Error saving!';
-      }
-    });
+    this.message = 'Is saving ...';
+
+    this.flightService
+      .save(this.editForm.value)
+      .pipe(delay(3000))
+      .subscribe({
+        next: (flight) => {
+          this.flight = flight;
+          this.message = 'Success saving! Navigating ...';
+          this.patchFormValue();
+
+          setTimeout(() => this.router.navigate(['/flight-search']), 3000);
+        },
+        error: (errResponse) => {
+          console.error('Error', errResponse);
+          this.message = 'Error saving!';
+        }
+      });
   }
 
   private editFormInit() {
