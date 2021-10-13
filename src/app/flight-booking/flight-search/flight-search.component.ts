@@ -60,10 +60,10 @@ export class FlightSearchComponent {
       const newDate = new Date(date.getTime() + 15 * ONE_MINUTE);
 
       // mutable update
-      firstFlight.date = newDate.toISOString();
+      // firstFlight.date = newDate.toISOString();
 
       // immutable update
-      // this.flights[0] = { ...firstFlight, date: newDate.toISOString() };
+      this.flights[0] = { ...firstFlight, date: newDate.toISOString() };
     }
   }
 
