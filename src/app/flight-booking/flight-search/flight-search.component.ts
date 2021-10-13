@@ -67,7 +67,7 @@ export class FlightSearchComponent {
     }
   }
 
-  onEdit(id: number) {
+  onEdit(id: number): void {
     this.router.navigate(['/flight-edit', id, { showDetails: true }]);
   }
 }
