@@ -180,24 +180,18 @@ If you want, guide the following through the exercise:
     ```HTML
     <ul class="nav">
         <li>
-            <a>
-                <i class="ti-home"></i>
-                <p><a routerLink="home">Home</a></p>
-            </a>
+            <i class="ti-home"></i>
+            <p><a routerLink="home">Home</a></p>
         </li>
 
         <li>
-            <a>
-                <i class="ti-arrow-top-right"></i>
-                <p><a routerLink="flight-search">Flights</a></p>
-            </a>
+            <i class="ti-arrow-top-right"></i>
+            <p><a routerLink="flight-search">Flights</a></p>
         </li>
 
         <li>
-            <a>
-                <i class="ti-user"></i>
-                <p><a routerLink="passenger-search">Passengers</a></p>
-            </a>
+            <i class="ti-user"></i>
+            <p><a routerLink="passenger-search">Passengers</a></p>
         </li>
     </ul>
     ```
