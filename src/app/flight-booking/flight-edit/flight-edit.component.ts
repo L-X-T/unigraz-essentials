@@ -1,5 +1,7 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
 import { FlightService } from '../flight-search/flight.service';
 import { Flight } from '../../entities/flight';
 import { validateCity } from '../shared/validation/city-validator';
@@ -12,15 +14,21 @@ import { validateCity } from '../shared/validation/city-validator';
 export class FlightEditComponent implements OnChanges, OnInit, OnDestroy {
   @Input() flight: Flight;
 
+  debug = true;
+  id: string;
+  showDetails: string;
+
   editForm: FormGroup;
 
   message = '';
 
-  constructor(private fb: FormBuilder, private flightService: FlightService) {}
+  constructor(private fb: FormBuilder, private flightService: FlightService, private route: ActivatedRoute) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.warn('[FlightEditComponent] Changes!');
-    console.log(changes);
+    if (this.debug) {
+      console.warn('[FlightEditComponent] Changes!');
+      console.log(changes);
+    }
 
     if (this.editForm && this.flight) {
       this.editForm.patchValue(this.flight);
@@ -28,7 +36,14 @@ export class FlightEditComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.warn('[FlightEditComponent] Good morning!');
+    if (this.debug) {
+      console.warn('[FlightEditComponent] Good morning!');
+    }
+
+    this.route.params.subscribe((params) => {
+      this.id = params['id'];
+      this.showDetails = params['showDetails'];
+    });
 
     this.editForm = this.fb.group({
       id: [1, [Validators.required]],
@@ -39,7 +54,9 @@ export class FlightEditComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.warn('[FlightEditComponent] Bye bye!');
+    if (this.debug) {
+      console.warn('[FlightEditComponent] Bye bye!');
+    }
   }
 
   save(): void {
